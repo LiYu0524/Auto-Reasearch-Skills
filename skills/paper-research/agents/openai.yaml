@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Research"
+  short_description: "arXiv survey → bibtex → reports"
+  default_prompt: "Use $paper-research to survey arXiv, download PDFs, extract text, and generate a structured lit-review brief."
