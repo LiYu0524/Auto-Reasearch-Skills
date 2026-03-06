@@ -2,8 +2,8 @@
 name: auto-research
 description: |
   一站式学术研究工作流：论文检索与阅读(arXiv + Zotero)、文献综述写作(Google Docs)、
-  架构图绘制(draw.io)、演示文稿制作(python-pptx / Pencil)。
-  整合 paper-research、google-docs、drawio、zotero-mcp、pptx 五大子技能。
+  学术插图生成(PaperBanana)、架构图绘制(draw.io)、演示文稿制作(python-pptx / Pencil)。
+  整合 paper-research、google-docs、paper-banana、drawio、zotero-mcp、pptx 六大子技能。
 version: 1.0.0
 user-invocable: true
 ---
@@ -19,6 +19,7 @@ user-invocable: true
 | **paper-research** | arXiv 检索、PDF 提取、文献综述生成 | Python 脚本 |
 | **zotero** | 文献库管理、注释提取、引用搜索 | zotero-mcp |
 | **google-docs** | 读写 Google Docs、Drive 文件管理 | Ruby 脚本 |
+| **paper-banana** | 学术插图生成（框架图、统计图） | PaperBanana AI |
 | **drawio** | 架构图、流程图、ER 图 | draw.io XML |
 | **pptx** | 演示文稿生成与编辑 | python-pptx |
 
@@ -30,8 +31,9 @@ user-invocable: true
 1. 检索论文    →  paper-research (arXiv) + zotero (已有文献库)
 2. 阅读与笔记  →  zotero (PDF 注释提取) + paper-research (文本提取)
 3. 写文献综述  →  google-docs (直接在 Google Doc 中编辑)
-4. 画架构图    →  drawio (生成 .drawio 或导出 PNG/SVG)
-5. 做演示文稿  →  pptx (python-pptx 生成 .pptx)
+4. 画学术插图  →  paper-banana (AI 生成框架图/统计图)
+5. 画架构图    →  drawio (生成 .drawio 或导出 PNG/SVG)
+6. 做演示文稿  →  pptx (python-pptx 生成 .pptx)
 ```
 
 ---
@@ -155,7 +157,56 @@ Google Docs URL 格式：`https://docs.google.com/document/d/<DOCUMENT_ID>/edit`
 
 ---
 
-## 4. Draw.io（架构图绘制）
+## 4. Paper Banana（学术插图生成）
+
+详见 `skills/paper-banana/SKILL.md`
+
+### 前置安装
+
+```bash
+# 克隆 PaperBanana 项目
+git clone https://github.com/paperbanana/PaperBanana.git ~/PaperBanana
+cd ~/PaperBanana && pip install -r requirements.txt
+
+# 配置模型（编辑 configs/model_config.yaml）
+```
+
+### 核心命令
+
+```bash
+SCRIPT=~/.claude/skills/auto-research/skills/paper-banana/scripts/generate_figure.py
+
+# 从方法描述生成框架图
+python3 $SCRIPT \
+  --content @method_section.md \
+  --caption "Figure 1: System architecture" \
+  --output ./fig1.png
+
+# 生成统计图
+python3 $SCRIPT \
+  --content "实验结果数据..." \
+  --caption "Figure 2: Performance comparison" \
+  --output ./fig2.png \
+  --task plot
+
+# 高质量模式
+python3 $SCRIPT \
+  --content @method.md \
+  --caption "Figure 3: Pipeline" \
+  --output ./fig3.png \
+  --exp-mode demo_full --critic-rounds 5
+```
+
+### 管线模式
+
+| 模式 | 流程 | 适用场景 |
+|------|------|----------|
+| `demo_planner_critic` | Planner → Visualizer → Critic × N | 快速生成，推荐默认 |
+| `demo_full` | Retriever → Planner → Stylist → Visualizer → Critic × N | 更精美，含风格优化 |
+
+---
+
+## 5. Draw.io（架构图绘制）
 
 详见 `skills/drawio/SKILL.md`
 
@@ -211,7 +262,7 @@ $DRAWIO -x -f pdf -e -o output.drawio.pdf input.drawio
 
 ---
 
-## 5. PPTX（演示文稿）
+## 6. PPTX（演示文稿）
 
 详见 `skills/pptx/README.md`
 
@@ -366,6 +417,10 @@ Auto-Research-Skills/
 │   │   ├── SKILL.md
 │   │   ├── scripts/
 │   │   └── references/
+│   ├── paper-banana/                 # 学术插图生成子技能
+│   │   ├── SKILL.md
+│   │   └── scripts/
+│   │       └── generate_figure.py
 │   ├── drawio/                       # 架构图子技能
 │   │   └── SKILL.md
 │   ├── zotero/                       # Zotero 子技能
