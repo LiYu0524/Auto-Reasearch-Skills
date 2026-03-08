@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Reviewer"
+  short_description: "Read PDFs and produce reviewer-style critiques"
+  default_prompt: "Use $paper-reviewer to read a paper PDF end-to-end, explain the method and experiments in Chinese, and produce reviewer-style strengths, concerns, and questions."

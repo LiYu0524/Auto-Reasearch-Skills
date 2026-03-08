@@ -2,8 +2,8 @@
 name: auto-research
 description: |
   一站式学术研究工作流：论文检索与阅读(arXiv + Zotero)、文献综述写作(Google Docs)、
-  学术插图生成(PaperBanana)、架构图绘制(draw.io)、演示文稿制作(python-pptx / Pencil)。
-  整合 paper-research、google-docs、paper-banana、drawio、zotero-mcp、pptx 六大子技能。
+  论文精读与审稿(paper-reviewer)、学术插图生成(PaperBanana)、架构图绘制(draw.io)、演示文稿制作(python-pptx / Pencil)。
+  整合 paper-research、paper-reviewer、google-docs、paper-banana、drawio、zotero-mcp、pptx 七大子技能。
 version: 1.0.0
 user-invocable: true
 ---
@@ -17,6 +17,7 @@ user-invocable: true
 | 子技能 | 用途 | 核心工具 |
 |--------|------|----------|
 | **paper-research** | arXiv 检索、PDF 提取、文献综述生成 | Python 脚本 |
+| **paper-reviewer** | 论文精读、创新点核验、审稿意见生成 | PDF + Python 脚本 |
 | **zotero** | 文献库管理、注释提取、引用搜索 | zotero-mcp |
 | **google-docs** | 读写 Google Docs、Drive 文件管理 | Ruby 脚本 |
 | **paper-banana** | 学术插图生成（框架图、统计图） | PaperBanana AI |
@@ -30,10 +31,11 @@ user-invocable: true
 ```
 1. 检索论文    →  paper-research (arXiv) + zotero (已有文献库)
 2. 阅读与笔记  →  zotero (PDF 注释提取) + paper-research (文本提取)
-3. 写文献综述  →  google-docs (直接在 Google Doc 中编辑)
-4. 画学术插图  →  paper-banana (AI 生成框架图/统计图)
-5. 画架构图    →  drawio (生成 .drawio 或导出 PNG/SVG)
-6. 做演示文稿  →  pptx (python-pptx 生成 .pptx)
+3. 论文精读    →  paper-reviewer (方法讲解 + 审稿式 critique)
+4. 写文献综述  →  google-docs (直接在 Google Doc 中编辑)
+5. 画学术插图  →  paper-banana (AI 生成框架图/统计图)
+6. 画架构图    →  drawio (生成 .drawio 或导出 PNG/SVG)
+7. 做演示文稿  →  pptx (python-pptx 生成 .pptx)
 ```
 
 ---
