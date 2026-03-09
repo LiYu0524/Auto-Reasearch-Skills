@@ -2,8 +2,9 @@
 name: auto-research
 description: |
   一站式学术研究工作流：论文检索与阅读(arXiv + Zotero)、文献综述写作(Google Docs)、
-  论文精读与审稿(paper-reviewer)、学术插图生成(PaperBanana)、架构图绘制(draw.io)、演示文稿制作(python-pptx / Pencil)。
-  整合 paper-research、paper-reviewer、google-docs、paper-banana、drawio、zotero-mcp、pptx 七大子技能。
+  论文精读与审稿(paper-reviewer)、学术写作Prompt工具箱(academic-writing)、
+  学术插图生成(PaperBanana)、架构图绘制(draw.io)、演示文稿制作(python-pptx / Pencil)。
+  整合 paper-research、paper-reviewer、academic-writing、google-docs、paper-banana、drawio、zotero-mcp、pptx 八大子技能。
 version: 1.0.0
 user-invocable: true
 ---
@@ -18,6 +19,7 @@ user-invocable: true
 |--------|------|----------|
 | **paper-research** | arXiv 检索、PDF 提取、文献综述生成 | Python 脚本 |
 | **paper-reviewer** | 论文精读、创新点核验、审稿意见生成 | PDF + Python 脚本 |
+| **academic-writing** | 中英翻译、润色、缩写/扩写、去AI味、审稿模拟 | Prompt 模板库 |
 | **zotero** | 文献库管理、注释提取、引用搜索 | zotero-mcp |
 | **google-docs** | 读写 Google Docs、Drive 文件管理 | Ruby 脚本 |
 | **paper-banana** | 学术插图生成（框架图、统计图） | PaperBanana AI |
@@ -32,10 +34,11 @@ user-invocable: true
 1. 检索论文    →  paper-research (arXiv) + zotero (已有文献库)
 2. 阅读与笔记  →  zotero (PDF 注释提取) + paper-research (文本提取)
 3. 论文精读    →  paper-reviewer (方法讲解 + 审稿式 critique)
-4. 写文献综述  →  google-docs (直接在 Google Doc 中编辑)
-5. 画学术插图  →  paper-banana (AI 生成框架图/统计图)
-6. 画架构图    →  drawio (生成 .drawio 或导出 PNG/SVG)
-7. 做演示文稿  →  pptx (python-pptx 生成 .pptx)
+4. 论文写作    →  academic-writing (翻译/润色/缩扩写/去AI味/审稿模拟)
+5. 写文献综述  →  google-docs (直接在 Google Doc 中编辑)
+6. 画学术插图  →  paper-banana (AI 生成框架图/统计图)
+7. 画架构图    →  drawio (生成 .drawio 或导出 PNG/SVG)
+8. 做演示文稿  →  pptx (python-pptx 生成 .pptx)
 ```
 
 ---
@@ -415,6 +418,16 @@ Auto-Research-Skills/
 │   │   ├── scripts/
 │   │   ├── assets/
 │   │   └── references/
+│   ├── paper-reviewer/               # 论文审稿子技能
+│   │   ├── SKILL.md
+│   │   ├── scripts/
+│   │   └── references/
+│   ├── academic-writing/             # 学术写作 Prompt 工具箱
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       ├── writing_prompts.md    # 16 个实战 Prompt 模板
+│   │       ├── ai_words_blacklist.md # AI 高频词黑名单
+│   │       └── external_skills.md   # 外部推荐 Skills
 │   ├── google-docs/                  # Google Docs 子技能
 │   │   ├── SKILL.md
 │   │   ├── scripts/
